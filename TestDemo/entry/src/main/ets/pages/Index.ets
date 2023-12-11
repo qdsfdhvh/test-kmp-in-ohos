@@ -1,7 +1,9 @@
+import { Greeting } from '../kmp/shared'
+
 @Entry
 @Component
 struct Index {
-  @State message: string = 'Hello World'
+  @State message: string = new Greeting().hello()
 
   build() {
     Row() {

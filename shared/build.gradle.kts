@@ -13,18 +13,9 @@ kotlin {
             testTask {
                 enabled = false
             }
-            webpackTask {
-                cssSupport {
-                    enabled = false
-                }
-                metadata {
-                    enabled = false
-                }
-                sourceMaps = false
-            }
             @OptIn(ExperimentalDistributionDsl::class)
             distribution {
-                outputDirectory.set(file("$projectDir/output"))
+                outputDirectory.set(file("$projectDir/../TestDemo/entry/src/main/ets/kmp"))
             }
         }
         binaries.library()
