@@ -1,4 +1,4 @@
-rootProject.name = "kmp-shared"
+rootProject.name = "test-kmp-in-ohos"
 
 pluginManagement {
     repositories {
@@ -16,7 +16,6 @@ dependencyResolutionManagement {
     }
 }
 
-enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 enableFeaturePreview("STABLE_CONFIGURATION_CACHE")
 
 include(":shared")

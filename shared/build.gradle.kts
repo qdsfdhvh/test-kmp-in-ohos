@@ -1,4 +1,5 @@
 import org.jetbrains.kotlin.gradle.targets.js.dsl.ExperimentalDistributionDsl
+import org.jetbrains.kotlin.gradle.targets.js.ir.JsIrBinary
 
 plugins {
     kotlin("multiplatform")
@@ -19,17 +20,32 @@ kotlin {
             }
         }
         binaries.library()
-        useCommonJs()
         generateTypeScriptDefinitions()
-//        compilations.configureEach {
-//            compilerOptions.configure {
-//                moduleKind.set(JsModuleKind.MODULE_COMMONJS)
-//            }
-//        }
+        compilations.all {
+            kotlinOptions {
+                moduleKind = "commonjs"
+                sourceMap = false
+                metaInfo = false
+            }
+            binaries.withType<JsIrBinary>().all {
+                linkTask.configure {
+                    kotlinOptions {
+                        moduleKind = "commonjs"
+                        sourceMap = false
+                        metaInfo = false
+                    }
+                }
+            }
+        }
     }
     sourceSets {
         all {
             languageSettings.optIn("kotlin.js.ExperimentalJsExport")
+        }
+        commonMain {
+            dependencies {
+                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.8.0-RC")
+            }
         }
     }
 }
