@@ -1,4 +1,5 @@
-import { hello, testFlow } from '../kmp/shared';
+import { getProcessUid, getProcessPid, hello, testFlow } from '../kmp/shared';
+import process from '@ohos.process';
 
 @Entry
 @Component
@@ -13,6 +14,10 @@ struct Index {
           .fontSize(50)
           .fontWeight(FontWeight.Bold)
         Text(this.num.toString())
+        Divider()
+          .height(6)
+        Text(`uid=${process.uid},pid=${process.pid}`)
+        Text(`uid=${getProcessUid()},pid=${getProcessPid()}`)
       }
       .width('100%')
     }
