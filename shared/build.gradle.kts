@@ -3,6 +3,7 @@ import org.jetbrains.kotlin.gradle.targets.js.ir.JsIrBinary
 
 plugins {
     kotlin("multiplatform")
+    id("org.jetbrains.compose") version "1.5.11"
 }
 
 version = "0.0.1"
@@ -50,6 +51,9 @@ kotlin {
             dependencies {
                 // TODO crash on ProductionLibrary, error: Signal:SIGSEGV(SEGV_MAPERR)@0x000000000000000a
                 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.8.0-RC")
+                // nanoTime in molecule-js is not support in ohos
+                // implementation("app.cash.molecule:molecule-runtime:1.3.1")
+                implementation(compose.runtime)
             }
         }
         jsMain {
@@ -72,7 +76,7 @@ listOf(
     tasks.getByName(taskName).dependsOn(jsBrowserDeleteLibrary)
 
     // ohos not support *.mjs, rename shared.mjs to shared.js
-    val renameShareLib by tasks.register<Copy>("${taskName}RenameLib") {
+    val renameShareLib by tasks.register<Copy>("${taskName}RenameKmpLib") {
         group = "kotlin browser"
         from(generatedKmpFileDir)
         into(generatedKmpFileDir)
@@ -80,6 +84,11 @@ listOf(
         rename("${generatedLibName}.mjs", "${generatedLibName}.js")
         dependsOn(tasks.getByName(taskName))
     }
+
+    // TODO create task: remove this in compose-multiplatform-core-runtime.mjs
+    // function MovableContent(content) {
+    //   illegalDecoyCallException('<init>');
+    // }
 
     // rename task will not delete old file, so run this task
     tasks.register<Delete>("${taskName}Fix") {
