@@ -1,11 +1,11 @@
-package app.cash.molecule
+package internal
 
 import androidx.compose.runtime.MonotonicFrameClock
 import ohos.systemDateTime
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
 
-object OhosAnimationFrameClock : MonotonicFrameClock {
+internal object OhosAnimationFrameClock : MonotonicFrameClock {
     override suspend fun <R> withFrameNanos(
         onFrame: (frameTimeNanos: Long) -> R,
     ): R = suspendCoroutine { continuation ->

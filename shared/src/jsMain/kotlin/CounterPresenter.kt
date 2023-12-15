@@ -3,7 +3,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import app.cash.molecule.OhosAnimationFrameClock
+import internal.OhosAnimationFrameClock
 import app.cash.molecule.RecompositionMode
 import app.cash.molecule.launchMolecule
 import kotlinx.coroutines.CoroutineScope
@@ -15,6 +15,7 @@ class CounterPresenter {
     private val scope = CoroutineScope(OhosAnimationFrameClock + Dispatchers.Main)
 
     fun collectPresenter(block: (CounterState) -> Unit) {
+        // nanoTime of molecule-js is not support in ohos, so can't use RecompositionMode.Immediate
         scope.launchMolecule(
             mode = RecompositionMode.ContextClock,
             body = { content() },

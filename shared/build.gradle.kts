@@ -51,8 +51,7 @@ kotlin {
             dependencies {
                 // TODO crash on ProductionLibrary, error: Signal:SIGSEGV(SEGV_MAPERR)@0x000000000000000a
                 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.8.0-RC")
-                // nanoTime in molecule-js is not support in ohos
-                // implementation("app.cash.molecule:molecule-runtime:1.3.1")
+                implementation("app.cash.molecule:molecule-runtime:1.3.1")
                 implementation(compose.runtime)
             }
         }
