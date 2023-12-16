@@ -9,7 +9,7 @@ version = "0.0.1"
 
 val generatedLibName = "shared"
 val generatedKmpFileDir get() = "$projectDir/dist"
-val ohosJsDir get() = "$projectDir/../TestDemo/entry/src/main/ets/kmp"
+val ohosJsDir get() = "$projectDir/../TestDemo/entry/src/main/js"
 
 kotlin {
     js(IR) {

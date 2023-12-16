@@ -4,4 +4,4 @@
 /build
 /.cxx
 /.test
-src/main/ets/kmp
+src/main/js

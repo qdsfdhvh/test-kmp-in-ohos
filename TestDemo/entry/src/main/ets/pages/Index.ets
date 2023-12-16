@@ -6,7 +6,7 @@ import {
   getProcessPid,
   getProcessUid,
   hello
-} from '../kmp/shared';
+} from 'js/shared';
 import process from '@ohos.process';
 import '@ohos.systemDateTime';
 import '@ohos.systemTime';
