@@ -1,3 +1,4 @@
+import ohos.DeviceInfo
 import ohos.process
 
 @JsExport
@@ -13,4 +14,9 @@ fun getProcessUid(): Int {
 @JsExport
 fun getProcessPid(): Int {
     return process.pid + 20
+}
+
+@JsExport
+fun getDeviceType1(): String {
+    return DeviceInfo.deviceType + "44444"
 }

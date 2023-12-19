@@ -3,13 +3,13 @@ import {
   CounterEventIncrement,
   CounterPresenter,
   CounterState,
+  getDeviceType1,
   getProcessPid,
   getProcessUid,
   hello
 } from 'js/shared';
 import process from '@ohos.process';
-import '@ohos.systemDateTime';
-import '@ohos.systemTime';
+import deviceInfo from '@ohos.deviceInfo';
 
 @Entry
 @Component
@@ -27,6 +27,7 @@ struct Index {
           .height(6)
         Text(`uid=${process.uid},pid=${process.pid}`)
         Text(`uid=${getProcessUid()},pid=${getProcessPid()}`)
+        Text(`device=${getDeviceType1()}`)
         Row() {
           Button('-')
             .borderRadius(8)
